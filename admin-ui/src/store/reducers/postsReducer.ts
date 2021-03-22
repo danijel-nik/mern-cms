@@ -1,7 +1,7 @@
 import {
-    GET_POSTS_REQUEST,
-    GET_POSTS_SUCCESS,
-    GET_POSTS_FAIL
+    GET_POSTS_LIST_REQUEST,
+    GET_POSTS_LIST_SUCCESS,
+    GET_POSTS_LIST_FAIL
 } from '../constants/postsConstants'
 
 type Post = {
@@ -16,16 +16,16 @@ interface PostListAction {
 
 export const postsListReducer = (state = { posts: [] }, action: PostListAction) => {
     switch (action.type) {
-        case GET_POSTS_REQUEST:
+        case GET_POSTS_LIST_REQUEST:
             return { loading: true }
 
-        case GET_POSTS_SUCCESS:
+        case GET_POSTS_LIST_SUCCESS:
             return {
                 loading: false,
                 posts: action.payload
             }
 
-        case GET_POSTS_FAIL:
+        case GET_POSTS_LIST_FAIL:
             return {
                 loading: false,
                 error: action.payload
