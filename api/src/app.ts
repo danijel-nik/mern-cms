@@ -3,7 +3,7 @@ import cors from 'cors'
 import { json } from 'body-parser'
 import path from 'path'
 import dotenv from 'dotenv'
-import postsRoute from './routes/posts'
+import postRoute from './routes/postRoutes'
 
 dotenv.config()
 
@@ -19,7 +19,7 @@ app.use(json());
 app.use(cors());
 
 // Routes
-app.use('/api/posts', postsRoute);
+app.use('/api/posts', postRoute);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/build')))
