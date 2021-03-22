@@ -1,16 +1,16 @@
 {
-  "name": "mern-cms",
+  "name": "mern-cms-server",
   "version": "1.0.0",
   "description": "CMS app developed with Node, Express, MongoDB and React",
   "main": "index.js",
   "scripts": {
     "frontend-install": "cd frontend && npm install",
-    "start": "tsc && node server.js",
-    "server": "tsc -w && nodemon server.js",
+    "start": "node server.js",
+    "server": "concurrently \"tsc -w\" \"nodemon server.js\"",
     "frontend": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/danijel-nik/mern-cms.git"

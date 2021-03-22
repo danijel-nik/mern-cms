@@ -2,14 +2,17 @@ import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
 import { json } from 'body-parser'
 import path from 'path'
-
+import dotenv from 'dotenv'
 import postsRoute from './routes/posts'
+
+dotenv.config()
 
 // App initialization
 const app: Application = express()
 
 // Database connection
-import dbConnection from './config/db'
+import db from './config/db'
+db.connect()
 
 // Middleware
 app.use(json());
@@ -29,5 +32,8 @@ if (process.env.NODE_ENV === 'production') {
         res.json({"mern-cms-api": "1.0.0"})
     })
 }
+
+const PORT = process.env.PORT || 9000
+app.listen(PORT, () => console.log(`API is running on port ${PORT}`))
 
 module.exports = app
