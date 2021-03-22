@@ -4,11 +4,11 @@ interface DB {
     connect(): void
 }
 
-const dbConnectionURI: string = process.env.DB_CONNECTION || ""
+const dbConnection: string = process.env.DB_CONNECTION || ""
 
 const db: DB = {
     connect: () => {
-        mongoose.connect(dbConnectionURI, {
+        mongoose.connect(dbConnection, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false

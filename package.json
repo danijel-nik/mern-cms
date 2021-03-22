@@ -4,11 +4,10 @@
   "description": "CMS app developed with Node, Express, MongoDB and React",
   "main": "index.js",
   "scripts": {
-    "frontend-install": "cd frontend && npm install",
     "start": "node server.js",
     "server": "concurrently \"tsc -w\" \"nodemon server.js\"",
-    "frontend": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "admin": "npm start --prefix admin-ui",
+    "dev": "concurrently \"npm run server\" \"npm run admin\"",
     "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "repository": {
