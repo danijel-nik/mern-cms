@@ -1,6 +1,12 @@
-const mongoose = require('mongoose')
+import mongoose, { Schema } from 'mongoose'
 
-const postSchema = mongoose.Schema({
+// @ts-ignore
+const postSchema = Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
     title: {
         type: String,
         required: true
@@ -33,4 +39,4 @@ const postSchema = mongoose.Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model('Posts', postSchema)
+export default mongoose.model('Posts', postSchema)
