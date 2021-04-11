@@ -1,7 +1,14 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose, { Schema, Document } from 'mongoose'
 
-// @ts-ignore
-const postSchema = Schema({
+export interface IUser extends Document {
+    name: string
+    email: string
+    password: string
+    role: string
+    isAdmin: boolean
+}
+
+const postSchema: Schema = new Schema({
     name: {
         type: String,
         required: true,
@@ -16,6 +23,10 @@ const postSchema = Schema({
         type: String,
         required: true
     },
+    role: {
+        type: String,
+        required: true
+    },
     isAdmin: {
         type: Boolean,
         required: true,
@@ -25,4 +36,4 @@ const postSchema = Schema({
     timestamps: true
 })
 
-export default mongoose.model('Posts', postSchema)
+export default mongoose.model<IUser>('Posts', postSchema)

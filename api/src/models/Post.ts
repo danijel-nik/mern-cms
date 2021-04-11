@@ -1,7 +1,17 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose, { Schema, Document } from 'mongoose'
 
-// @ts-ignore
-const postSchema = Schema({
+export interface IPost extends Document {
+    user: string
+    title: string
+    permalink: string
+    category: string
+    description: string
+    body: string
+    type: string
+    image?: string
+}
+
+const postSchema: Schema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -39,4 +49,4 @@ const postSchema = Schema({
     timestamps: true
 })
 
-export default mongoose.model('Posts', postSchema)
+export default mongoose.model<IPost>('Posts', postSchema)
