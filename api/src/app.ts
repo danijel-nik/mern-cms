@@ -12,7 +12,7 @@ const app: Application = express()
 
 // Database connection
 import db from './config/db'
-db.connect()
+db.connect(process.env.DB_CONNECTION || "")
 
 // Middleware
 app.use(json());
@@ -20,6 +20,9 @@ app.use(cors());
 
 // Routes
 app.use('/api/posts', postRoute);
+
+// Static
+app.use('/uploads', express.static(path.join(path.resolve(), '/uploads')))
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/build')))

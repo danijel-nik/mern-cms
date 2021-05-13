@@ -1,14 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose'
 
-export interface IUser extends Document {
+export interface IUser {
     name: string
     email: string
     password: string
-    role: string
+    role: "admin" | "editor" | "subscriber"
     isAdmin: boolean
 }
 
-const postSchema: Schema = new Schema({
+const userSchema: Schema = new Schema({
     name: {
         type: String,
         required: true,
@@ -36,4 +36,4 @@ const postSchema: Schema = new Schema({
     timestamps: true
 })
 
-export default mongoose.model<IUser>('Posts', postSchema)
+export default mongoose.model<IUser & Document>('Users', userSchema)

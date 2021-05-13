@@ -1,13 +1,11 @@
 import mongoose from 'mongoose'
 
 interface DB {
-    connect(): void
+    connect(dbConnection: string): void
 }
 
-const dbConnection: string = process.env.DB_CONNECTION || ""
-
 const db: DB = {
-    connect: () => {
+    connect: (dbConnection) => {
         mongoose.connect(dbConnection, {
             useNewUrlParser: true,
             useUnifiedTopology: true,

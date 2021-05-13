@@ -1,13 +1,15 @@
 import mongoose, { Schema, Document } from 'mongoose'
 
-export interface IPost extends Document {
-    user: string
+export interface IPost {
+    user: mongoose.Schema.Types.ObjectId | null
     title: string
     permalink: string
-    category: string
+    category?: string
     description: string
     body: string
-    type: string
+    type: "post" | "page"
+    status: "draft" | "published"
+    access: "protected" | "public"
     image?: string
 }
 
@@ -19,11 +21,13 @@ const postSchema: Schema = new Schema({
     },
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     permalink: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     category: {
         type: String,
@@ -41,6 +45,14 @@ const postSchema: Schema = new Schema({
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        required: true
+    },
+    access: {
+        type: String,
+        required: true
+    },
     image: {
         type: String,
         required: false
@@ -49,4 +61,4 @@ const postSchema: Schema = new Schema({
     timestamps: true
 })
 
-export default mongoose.model<IPost>('Posts', postSchema)
+export default mongoose.model<IPost & Document>('Posts', postSchema)

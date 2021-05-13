@@ -8,6 +8,8 @@
     "server": "concurrently \"tsc -w\" \"nodemon server.js\"",
     "admin": "npm start --prefix admin-ui",
     "dev": "concurrently \"npm run server\" \"npm run admin\"",
+    "data:import": "node server seeder",
+    "data:destroy": "node server seeder -d",
     "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "repository": {
